@@ -1,66 +1,94 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="pt">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Buka+</title>
+<title>Buka+ Biblioteca Virtual</title>
 
-<style>
-
-body{
-    margin:0;
-    background:#0f172a;
-    color:white;
-    font-family:Arial, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-}
-
-.card{
-    width:90%;
-    max-width:700px;
-    background:#1e293b;
-    border-radius:20px;
-    padding:40px;
-    text-align:center;
-}
-
-h1{
-    font-size:48px;
-}
-
-.btn{
-    display:inline-block;
-    padding:16px 30px;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    border-radius:12px;
-    margin-top:20px;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
+<div class="background-blur"></div>
+
+<header>
+
+<img src="assets/logo.png" class="logo">
+
+<h1>Buka+</h1>
+
+<p>
+A Biblioteca Digital Angolana para aprender em qualquer lugar.
+</p>
+
+</header>
+
+<section class="hero">
+
 <div class="card">
 
-<h1>📚 Buka+</h1>
+<h2>📚 Milhares de Livros</h2>
 
-<p>Biblioteca Digital Educativa</p>
-
-<a class="btn"
-href="https://github.com/Cavaleiro-max/Biblioteca-Buka-/releases/latest">
-Baixar Aplicação </a>
+<p>
+Acesso rápido a conteúdos educativos,
+académicos e profissionais.
+</p>
 
 </div>
 
-</body>
+<div class="card">
 
+<h2>⚡ Leitura Rápida</h2>
+
+<p>
+Experiência moderna e otimizada.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>⭐ Favoritos</h2>
+
+<p>
+Guarda os teus livros preferidos.
+</p>
+
+</div>
+
+</section>
+
+<section class="download">
+
+<h2>Transferir Aplicação</h2>
+
+<p id="deviceInfo">
+A detetar dispositivo...
+</p>
+
+<a id="downloadBtn" href="#">
+Carregando...
+</a>
+
+</section>
+
+<footer>
+
+<p>
+Desenvolvido por João Cavaleiro
+</p>
+
+<p>
+Luanda • Angola
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
 </html>
