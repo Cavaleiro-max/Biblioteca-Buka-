@@ -18,7 +18,7 @@ jobs:
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.44.2'
+          flutter-version: '3.27.0'
           channel: 'stable'
 
       # ── 3. Instala as dependências do projeto ──────────────────────
