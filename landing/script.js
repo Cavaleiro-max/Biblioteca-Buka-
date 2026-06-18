@@ -12,7 +12,7 @@ const isAndroid =
 if (isIOS) {
 
     btn.innerText = "📱 Abrir versão iPhone";
-    btn.href = "pages/ios.html";
+    btn.href = "https://bukavirtual.netlify.app/";
 
     info.innerText =
     "Dispositivo Apple detectado.";
