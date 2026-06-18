@@ -21,7 +21,7 @@ btn.innerText =
 "⬇️ Baixar Buka+ Android";
 
 btn.href =
-"downloads/app-release.apk";
+"https://github.com/Cavaleiro-max/Biblioteca-Buka-/releases/download/v1.0.0/app-release.1.apk";
 
 info.innerText =
 "Foi detetado um dispositivo Android.";
