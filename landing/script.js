@@ -1,29 +1,42 @@
 const btn = document.getElementById("downloadBtn");
 const info = document.getElementById("deviceInfo");
 
+const ua = navigator.userAgent;
+
 const isIOS =
-/iPad|iPhone|iPod/.test(navigator.userAgent);
+/iPad|iPhone|iPod/.test(ua);
 
-if(isIOS){
+const isAndroid =
+/Android/.test(ua);
 
-btn.innerText =
-"📱 Abrir versão iPhone";
+if (isIOS) {
 
-btn.href =
-"pages/ios.html";
+    btn.innerText = "📱 Abrir versão iPhone";
+    btn.href = "pages/ios.html";
 
-info.innerText =
-"Foi detetado um dispositivo Apple.";
+    info.innerText =
+    "Dispositivo Apple detectado.";
 
-}else{
+} else if (isAndroid) {
 
-btn.innerText =
-"⬇️ Baixar Buka+ Android";
+    btn.innerText =
+    "⬇️ Baixar Buka+ Android";
 
-btn.href =
-"https://github.com/Cavaleiro-max/Biblioteca-Buka-/releases/download/v1.0.0/app-release.1.apk";
+    btn.href =
+    "https://github.com/Cavaleiro-max/Biblioteca-Buka-/releases/download/v1.0.0/app-release.1.apk";
 
-info.innerText =
-"Foi detetado um dispositivo Android.";
+    info.innerText =
+    "Dispositivo Android detectado.";
+
+} else {
+
+    btn.innerText =
+    "⬇️ Baixar Buka+";
+
+    btn.href =
+    "https://github.com/Cavaleiro-max/Biblioteca-Buka-/releases/download/v1.0.0/app-release.1.apk";
+
+    info.innerText =
+    "Computador detectado.";
 
 }
