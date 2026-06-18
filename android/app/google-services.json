@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "792857956324",
+    "project_id": "buka-app-ddf88",
+    "storage_bucket": "buka-app-ddf88.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792857956324:android:9d0aadafcd0f444c2581f1",
+        "android_client_info": {
+          "package_name": "Trabalho_TCC.com.biblioteca_virtual_nh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792857956324-g2tr8vr9jt58qvocueb1ph3eka5jn0i8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-1lQBGdFUmYfOXOIrQjSEeGdJvNqfmeY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792857956324-g2tr8vr9jt58qvocueb1ph3eka5jn0i8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "792857956324-0mnd5mv5qm88tvpdpp4kss8opav0ri2k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "TrabalhoTCC.com.bibliotecaVirtualNh"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,63 @@
+name: "buka"
+description: "A new Flutter project."
+publish_to: 'none'
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.0
+  cloud_firestore: ^5.6.0
+
+  # Estado
+  provider: ^6.1.2
+
+  # Base de dados local
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Ficheiros e rede
+  path_provider: ^2.1.2
+  dio: ^5.4.0
+  http: ^1.2.0
+
+  # PDF
+  syncfusion_flutter_pdfviewer: ^27.2.5
+  #Datas formatadas (novo)
+  intl: ^0.19.0
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+  build_runner: ^2.4.6
+  hive_generator: ^2.0.1
+
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+
+  # CORRECÇÃO: sem esta declaração, Image.asset('assets/icon/buka_icon.png')
+  # nunca encontra o ficheiro — o image_path do flutter_launcher_icons serve
+  # só para gerar os ícones do launcher (build), não para uso em runtime/Image.asset.
+  assets:
+    - assets/icon/buka_icon.png
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+
+  image_path: "assets/icon/buka_icon.png"
+
+  adaptive_icon_background: "#0D3B8C"
+  #adaptive_icon_foreground: "assets/icon/buka_icon_fg.png"
