@@ -3,7 +3,7 @@ name: Build iOS (Teste no iPhone)
 on:
   push:
     branches: [ master ]
-  workflow_dispatch: # permite correr manualmente no GitHub
+  workflow_dispatch:
 
 jobs:
   build-ios:
@@ -14,31 +14,49 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      # ── 2. Instala o Flutter ───────────────────────────────────────
+      # ── 2. Instala o Flutter (versão mais recente stable) ──────────
+      # Usa a versão latest stable para garantir Dart 3.8.0+
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.0'
           channel: 'stable'
+          cache: true
 
-      # ── 3. Instala as dependências do projeto ──────────────────────
+      # ── 3. Mostra a versão instalada (para diagnóstico) ────────────
+      - name: Verificar versão Flutter e Dart
+        run: |
+          flutter --version
+          dart --version
+
+      # ── 4. Corrige flutter_lints no pubspec.yaml se necessário ─────
+      # Garante compatibilidade sem precisar editar manualmente
+      - name: Corrigir dependências
+        run: |
+          # Substitui flutter_lints ^6.0.0 por ^5.0.0 se necessário
+          if grep -q "flutter_lints: \^6" pubspec.yaml; then
+            sed -i '' 's/flutter_lints: \^6\.[0-9]\.[0-9]/flutter_lints: ^5.0.0/' pubspec.yaml
+            echo "flutter_lints corrigido para ^5.0.0"
+          else
+            echo "flutter_lints já está OK"
+          fi
+          cat pubspec.yaml | grep flutter_lints
+
+      # ── 5. Instala as dependências do projeto ──────────────────────
       - name: Flutter pub get
         run: flutter pub get
 
-      # ── 4. Instala o certificado de desenvolvimento ────────────────
+      # ── 6. Instala o certificado de desenvolvimento ────────────────
       - name: Instalar certificado Apple
         env:
           CERTIFICATE_BASE64:   ${{ secrets.CERTIFICATE_BASE64 }}
           CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
           KEYCHAIN_PASSWORD:    bukaplus-keychain
         run: |
-          # Cria um keychain temporário
           security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
           security set-keychain-settings -t 3600 -u build.keychain
 
-          # Importa o certificado
           echo "$CERTIFICATE_BASE64" | base64 --decode > certificate.p12
           security import certificate.p12 \
             -k build.keychain \
@@ -48,7 +66,7 @@ jobs:
             -S apple-tool:,apple: \
             -s -k "$KEYCHAIN_PASSWORD" build.keychain
 
-      # ── 5. Instala o Provisioning Profile ─────────────────────────
+      # ── 7. Instala o Provisioning Profile ─────────────────────────
       - name: Instalar Provisioning Profile
         env:
           PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
@@ -57,7 +75,7 @@ jobs:
           echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode \
             > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
 
-      # ── 6. Compila o app iOS ───────────────────────────────────────
+      # ── 8. Compila o app iOS ───────────────────────────────────────
       - name: Build iOS
         run: |
           flutter build ios --release --no-codesign
@@ -72,7 +90,7 @@ jobs:
             PROVISIONING_PROFILE_SPECIFIER=profile \
             DEVELOPMENT_TEAM=${{ secrets.APPLE_TEAM_ID }}
 
-      # ── 7. Exporta o .ipa ──────────────────────────────────────────
+      # ── 9. Exporta o .ipa ──────────────────────────────────────────
       - name: Exportar .ipa
         run: |
           cat > /tmp/ExportOptions.plist << EOF
@@ -101,7 +119,7 @@ jobs:
             -exportOptionsPlist /tmp/ExportOptions.plist \
             -exportPath $RUNNER_TEMP/export
 
-      # ── 8. Guarda o .ipa como artefacto para download ─────────────
+      # ── 10. Guarda o .ipa para download ───────────────────────────
       - name: Guardar .ipa
         uses: actions/upload-artifact@v4
         with:
